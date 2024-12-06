@@ -27,6 +27,54 @@ public class Anime implements Serializable {
 		return id;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public String getAuthorName() {
+		return authorName;
+	}
+
+	public int getReleaseYear() {
+		return releaseYear;
+	}
+
+	public int getEpisodeCount() {
+		return episodeCount;
+	}
+
+	public Studio getStudio() {
+		return studio;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
+	}
+
+	public void setReleaseYear(int releaseYear) {
+		this.releaseYear = releaseYear;
+	}
+
+	public void setEpisodeCount(int episodeCount) {
+		this.episodeCount = episodeCount;
+	}
+
+	public void setStudio(Studio studio) {
+		this.studio = studio;
+	}
+
 	@Override
 	public String toString() {
 		return "Anime [id=" + id + ", name=" + name + ", genre=" + genre + ", authorName=" + authorName

@@ -1,10 +1,11 @@
 package models;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import dto.AnimeDTO;
 
-public class Anime {
+public class Anime implements Serializable {
 	UUID id = UUID.randomUUID();
 	private String name;
 	private String genre;
@@ -20,6 +21,16 @@ public class Anime {
 		this.releaseYear = animedto.releaseYear();
 		this.episodeCount = animedto.episodeCount();
 		this.studio = animedto.studio();
+	}
+
+	public UUID getId() {
+		return id;
+	}
+
+	@Override
+	public String toString() {
+		return "Anime [id=" + id + ", name=" + name + ", genre=" + genre + ", authorName=" + authorName
+				+ ", releaseYear=" + releaseYear + ", episodeCount=" + episodeCount + ", studio=" + studio + "]";
 	}
 
 }

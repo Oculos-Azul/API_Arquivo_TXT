@@ -1,6 +1,6 @@
 package dto;
 
-import models.Studio;
+import java.util.UUID;
 
 public record AnimeDTO(
 		String name,
@@ -8,7 +8,7 @@ public record AnimeDTO(
 		String authorName,
 		int releaseYear,
 		int episodeCount,
-		Studio studio) {
+		UUID studio) {
 
 	public String name() {
 		return name;
@@ -30,7 +30,7 @@ public record AnimeDTO(
 		return episodeCount;
 	}
 
-	public Studio studio() {
+	public UUID studio() {
 		return studio;
 	}
 

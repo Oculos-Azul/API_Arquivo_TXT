@@ -12,7 +12,7 @@ public class Anime implements Serializable {
 	private String authorName;
 	private int releaseYear;
 	private int episodeCount;
-	private Studio studio;
+	private UUID studio;
 
 	public Anime(AnimeDTO animedto) {
 		this.name = animedto.name();
@@ -47,7 +47,7 @@ public class Anime implements Serializable {
 		return episodeCount;
 	}
 
-	public Studio getStudio() {
+	public UUID getStudio() {
 		return studio;
 	}
 
@@ -71,9 +71,20 @@ public class Anime implements Serializable {
 		this.episodeCount = episodeCount;
 	}
 
-	public void setStudio(Studio studio) {
+	public void setStudio(UUID studio) {
 		this.studio = studio;
 	}
+	
+    public AnimeDTO toDTO() {
+        return new AnimeDTO(
+            this.name,
+            this.genre,
+            this.authorName,
+            this.releaseYear,
+            this.episodeCount,
+            this.studio
+        );
+    }
 
 	@Override
 	public String toString() {

@@ -17,13 +17,8 @@ public class AnimeRepository {
 
 	public void deleteAnime(UUID id) throws ClassNotFoundException, IOException {
 	    Map<UUID, Anime> map = file.readFromFile();
-	    
-	    if (map.remove(id) != null) {
-	        file.writeToFile(map);
-	        
-	    } else {
-	        throw new IllegalArgumentException("Anime com ID: " + id + " não achado");
-	    }
+	    map.remove(id);
+	    file.writeToFile(map);
 	}
 	
 	public Map<UUID, Anime> findAllAnime() throws ClassNotFoundException, IOException {
@@ -35,31 +30,31 @@ public class AnimeRepository {
 		return map.get(id);
 	}
 
-	public void updateAnime(UUID id, AnimeDTO upAnime, String fild) throws ClassNotFoundException, IOException {
+	public void updateAnime(UUID id, String value, String fild) throws ClassNotFoundException, IOException {
 		Anime anime = findById(id);
 		
 		switch(fild.toLowerCase()) {
 		case "name":
-			anime.setName(upAnime.name());
+			anime.setName(value);
 			break;
 		case "genre":
-			anime.setGenre(upAnime.genre());
+			anime.setGenre(value);
 			break;
-		case "authorName":
-			anime.setAuthorName(upAnime.authorName());
+		case "authorname":
+			anime.setAuthorName(value);
 			break;
-		case "releaseYear":
-			anime.setReleaseYear(upAnime.releaseYear());
+		case "releaseyear":
+			anime.setReleaseYear(Integer.parseInt(value));
 			break;
-		case "episodeCount":
-			anime.setEpisodeCount(upAnime.episodeCount());
+		case "episodecount":
+			anime.setEpisodeCount(Integer.parseInt(value));
 			break;
 		case "studio":
-			anime.setStudio(upAnime.studio());
+			anime.setStudio(UUID.fromString(value));
 			break;
 		}
 		
-		file.w
+		file.writeToFile(anime);
 		
 	}
 }

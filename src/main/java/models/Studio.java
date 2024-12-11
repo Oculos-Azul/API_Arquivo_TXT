@@ -16,6 +16,34 @@ public class Studio implements Serializable{
 		this.foundationDate = studiodto.data();
 	}
 
+	public UUID getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+	public LocalDate getFoundationDate() {
+		return foundationDate;
+	}
+
+
+
+	public void setFoundationDate(LocalDate foundationDate) {
+		this.foundationDate = foundationDate;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "Studio [id=" + id + ", name=" + name + ", foundationDate=" + foundationDate + "]";

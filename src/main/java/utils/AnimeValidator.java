@@ -2,10 +2,8 @@ package utils;
 
 import exceptions.*;
 import models.Anime;
-import models.Studio;
 
 import java.util.Set;
-import java.util.UUID;
 import java.util.regex.Pattern;
 
 import dto.AnimeDTO;
@@ -21,7 +19,6 @@ public class AnimeValidator {
     }
 
     public static void validateAnime(Anime anime) {
-        validateUUID(anime.getId());
         validateName(anime.getName());
         validateGenre(anime.getGenre());
         validateAuthorName(anime.getAuthorName());
@@ -37,12 +34,6 @@ public class AnimeValidator {
         validateReleaseYear(anime.releaseYear());
         validateEpisodeCount(anime.episodeCount());
         validateStudio(anime.studio());
-    }
-
-    public static void validateUUID(UUID input) {
-        if (input == null || !UUID_PATTERN.matcher(input.toString()).matches()) {
-            throw new InvalidUUIDException("O ID é inválido ou nulo.");
-        }
     }
     
     public static void validateField(String field) {
@@ -81,7 +72,7 @@ public class AnimeValidator {
         }
     }
 
-    private static void validateStudio(UUID studio) {
+    private static void validateStudio(String studio) {
         if (studio == null) {
             throw new InvalidStudioException("O estúdio não pode ser nulo.");
         }

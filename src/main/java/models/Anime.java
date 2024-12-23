@@ -6,13 +6,12 @@ import java.util.UUID;
 import dto.AnimeDTO;
 
 public class Anime implements Serializable {
-	UUID id = UUID.randomUUID();
 	private String name;
 	private String genre;
 	private String authorName;
 	private int releaseYear;
 	private int episodeCount;
-	private UUID studio;
+	private String studio;
 
 	public Anime(AnimeDTO animedto) {
 		this.name = animedto.name();
@@ -21,10 +20,6 @@ public class Anime implements Serializable {
 		this.releaseYear = animedto.releaseYear();
 		this.episodeCount = animedto.episodeCount();
 		this.studio = animedto.studio();
-	}
-
-	public UUID getId() {
-		return id;
 	}
 
 	public String getName() {
@@ -47,7 +42,7 @@ public class Anime implements Serializable {
 		return episodeCount;
 	}
 
-	public UUID getStudio() {
+	public String getStudio() {
 		return studio;
 	}
 
@@ -71,7 +66,7 @@ public class Anime implements Serializable {
 		this.episodeCount = episodeCount;
 	}
 
-	public void setStudio(UUID studio) {
+	public void setStudio(String studio) {
 		this.studio = studio;
 	}
 	
@@ -86,10 +81,19 @@ public class Anime implements Serializable {
         );
     }
 
-	@Override
-	public String toString() {
-		return "Anime [id=" + id + ", name=" + name + ", genre=" + genre + ", authorName=" + authorName
-				+ ", releaseYear=" + releaseYear + ", episodeCount=" + episodeCount + ", studio=" + studio + "]";
-	}
+    @Override
+    public String toString() {
+        return String.format(
+            "==========================\n" +
+            "  Name: %s\n" +
+            "  Genre: %s\n" +
+            "  Author: %s\n" +
+            "  Release Year: %d\n" +
+            "  Episode Count: %d\n" +
+            "  Studio: %s\n", 
+            name, genre, authorName, releaseYear, episodeCount, studio
+        );
+    }
+
 
 }

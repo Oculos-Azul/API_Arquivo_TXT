@@ -1,6 +1,7 @@
 package repository;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Map;
 import java.util.UUID;
 
@@ -15,23 +16,24 @@ public class AnimeRepository {
 		file.writeToFile(new Anime(anime));
 	}
 
-	public void deleteAnime(UUID id) throws ClassNotFoundException, IOException {
-	    Map<UUID, Anime> map = file.readFromFile();
-	    map.remove(id);
+	public void deleteAnime(String name) throws ClassNotFoundException, IOException {
+	    Map<String, Anime> map = file.readFromFile();
+	    map.remove(name);
 	    file.writeToFile(map);
 	}
 	
-	public Map<UUID, Anime> findAllAnime() throws ClassNotFoundException, IOException {
-		return file.readFromFile();
-	}
-	
-	public Anime findById(UUID id) throws ClassNotFoundException, IOException {
-		Map<UUID, Anime> map = file.readFromFile();
-		return map.get(id);
+	public Map<String, Anime> findAllAnime() throws ClassNotFoundException, IOException {
+	    return Collections.unmodifiableMap(file.readFromFile());
 	}
 
-	public void updateAnime(UUID id, String value, String fild) throws ClassNotFoundException, IOException {
-		Anime anime = findById(id);
+	
+	public Anime findById(String name) throws ClassNotFoundException, IOException {
+		Map<String, Anime> map = file.readFromFile();
+		return map.get(name);
+	}
+
+	public void updateAnime(String name, String value, String fild) throws ClassNotFoundException, IOException {
+		Anime anime = findById(name);
 		
 		switch(fild.toLowerCase()) {
 		case "name":
@@ -50,7 +52,7 @@ public class AnimeRepository {
 			anime.setEpisodeCount(Integer.parseInt(value));
 			break;
 		case "studio":
-			anime.setStudio(UUID.fromString(value));
+			anime.setStudio(value);
 			break;
 		}
 		

@@ -25,36 +25,36 @@ public class AnimeService {
         return true;
     }
 
-    public void deleteAnime(UUID id) throws ValidationException, IOException, ClassNotFoundException {
-        AnimeValidator.validateUUID(id);
-        findById(id);
-        animeRepository.deleteAnime(id);
+    public void deleteAnime(String name) throws ValidationException, IOException, ClassNotFoundException {
+//        AnimeValidator.validateUUID(id);
+        findById(name);
+        animeRepository.deleteAnime(name);
     }
 
-    public Map<UUID, Anime> findAllAnime() throws IOException, ClassNotFoundException {
-        Map<UUID, Anime> map = animeRepository.findAllAnime();
+    public Map<String, Anime> findAllAnime() throws IOException, ClassNotFoundException {
+        Map<String, Anime> map = animeRepository.findAllAnime();
         if (map.isEmpty()) {
             throw new IllegalArgumentException("Nenhum anime cadastrado");
         }
         return map;
     }
 
-    public Anime findById(UUID id) throws InvalidUUIDException, IOException, ClassNotFoundException {
-        AnimeValidator.validateUUID(id);
-        Anime anime = animeRepository.findById(id);
+    public Anime findById(String name) throws InvalidUUIDException, IOException, ClassNotFoundException {
+//        AnimeValidator.validateUUID(id);
+        Anime anime = animeRepository.findById(name);
         if (anime == null) {
-            throw new IllegalArgumentException("Anime com ID: " + id + " não encontrado.");
+            throw new IllegalArgumentException("Anime \"" + name + "\" não encontrado.");
         }
         return anime;
     }
 
-    public void updateAnime(UUID id, String value, String field) throws ValidationException, IOException, ClassNotFoundException {
-        AnimeValidator.validateUUID(id);
+    public void updateAnime(String name, String value, String field) throws ValidationException, IOException, ClassNotFoundException {
+//        AnimeValidator.validateUUID(id);
         AnimeValidator.validateField(field);
-        Anime existingAnime = findById(id);
+        Anime existingAnime = findById(name);
         if (existingAnime == null) {
-            throw new IllegalArgumentException("Anime com ID: " + id + " não encontrado.");
+            throw new IllegalArgumentException("Anime \"" + name + "\" não encontrado.");
         }
-        animeRepository.updateAnime(id, value, field);
+        animeRepository.updateAnime(name, value, field);
     }
 }

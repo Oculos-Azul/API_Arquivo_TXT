@@ -8,7 +8,7 @@ public record AnimeDTO(
 		String authorName,
 		int releaseYear,
 		int episodeCount,
-		UUID studio) {
+		String studio) {
 
 	public String name() {
 		return name;
@@ -30,8 +30,22 @@ public record AnimeDTO(
 		return episodeCount;
 	}
 
-	public UUID studio() {
+	public String studio() {
 		return studio;
 	}
+	
+    @Override
+    public String toString() {
+        return String.format(
+            "==========================\n" +
+            "  Name: %s\n" +
+            "  Genre: %s\n" +
+            "  Author: %s\n" +
+            "  Release Year: %d\n" +
+            "  Episode Count: %d\n" +
+            "  Studio: %s\n", 
+            name, genre, authorName, releaseYear, episodeCount, studio
+        );
+    }
 
 }

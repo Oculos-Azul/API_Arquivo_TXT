@@ -26,7 +26,6 @@ public class AnimeService {
     }
 
     public void deleteAnime(String name) throws ValidationException, IOException, ClassNotFoundException {
-//        AnimeValidator.validateUUID(id);
         findById(name);
         animeRepository.deleteAnime(name);
     }
@@ -40,7 +39,6 @@ public class AnimeService {
     }
 
     public Anime findById(String name) throws InvalidUUIDException, IOException, ClassNotFoundException {
-//        AnimeValidator.validateUUID(id);
         Anime anime = animeRepository.findById(name);
         if (anime == null) {
             throw new IllegalArgumentException("Anime \"" + name + "\" não encontrado.");
@@ -49,7 +47,6 @@ public class AnimeService {
     }
 
     public void updateAnime(String name, String value, String field) throws ValidationException, IOException, ClassNotFoundException {
-//        AnimeValidator.validateUUID(id);
         AnimeValidator.validateField(field);
         Anime existingAnime = findById(name);
         if (existingAnime == null) {
